@@ -10,7 +10,7 @@ function App() {
   const [clicked, setClicked] = useState(false);
   const [playClicked, setPlayClicked] = useState(false);
   const [isBetting, setIsBetting] = useState(true);
-  const bettingRef = useRef(null);
+  const bettingRef = useRef<BettingInterface>(null);
 
   useEffect(() => {
     if (!isBetting) {
@@ -63,7 +63,7 @@ function App() {
 
   const handlePlay = () => {
     setPlayClicked(!playClicked);
-    if(bettingRef.current) {
+    if (bettingRef.current) {
       bettingRef.current.handleRemoveFromWallet();
     }
   };
@@ -83,7 +83,11 @@ function App() {
         <BlackjackGame ref={game} />
       </div>
       <div className="drop-shadow-xl drop-shadow-black border-4 border-yellow-500 rounded-3xl justify-items-center pt-5 ml-5 mr-5 bg-[url(/assets/felt-green.jpg)] bg-center bg-repeat">
-        <BettingInterface ref={bettingRef} wallet={100} isBetting={!isBetting}/>
+        <BettingInterface
+          ref={bettingRef}
+          wallet={100}
+          isBetting={!isBetting}
+        />
       </div>
     </div>
   );
