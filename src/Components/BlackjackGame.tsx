@@ -114,28 +114,12 @@ export default class BlackjackGame extends React.Component<
     return this.roundWinner;
   }
 
-  // componentDidUpdate(prevProps: Readonly<BlackjackGameProps>, prevState: Readonly<BlackjackGameState>, snapshot?: any): void {
-  //   if(this.state.player !== prevState.player) {
-  //     let d = 0;
-  //   }
-  //   if(this.state.dealer !== prevState.dealer) {
-  //     let d = 0;
-  //   }
-  //   if(this.state.deck !== prevState.deck) {
-  //     let d =0;
-  //   }
-  // }
-
-  stop(): void {}
-
-  continue(): void {}
-
   reset(): void {
     this.state.deck.resetDeck();
     this.state.player.hand.clearHand();
     this.state.dealer.hand.clearHand();
-    this.state.player.hand.value = 0;
-    this.state.dealer.hand.value = 0;
+    this.state.player.hand.calculateValue();
+    this.state.dealer.hand.calculateValue();
     this.playerTurn = 0;
     this.gameStarted = false;
   }
@@ -145,34 +129,23 @@ export default class BlackjackGame extends React.Component<
       this.state.player.hit(this.state.deck.drawCard() as Card);
       this.state.dealer.hit(this.state.deck.drawCard() as Card);
     }
-
-    // this.state.player.hand.addCard(new Card({ face: "A", suit: "♥" }));
-    // this.state.player.hand.addCard(new Card({ face: "K", suit: "♥" }));
-    // this.state.dealer.hand.addCard(new Card({ face: "A", suit: "♥" }));
-    // this.state.dealer.hand.addCard(new Card({ face: "K", suit: "♥" }));
-  }
-
-  handlePlayerTurns(): string {
-    return "";
-  }
-
-  determineWinner(): string {
-    return "";
   }
 
   render(): JSX.Element {
     const { dealer, player } = this.state;
     const textJSXtext =
       "pt-2 pb-10 text-center text-3xl text-white drop-shadow-lg text-shadow-lg text-shadow-black";
+    const playingAreaStyle =
+      "drop-shadow-xl drop-shadow-black border-4 border-yellow-500 rounded-3xl ml-3 mr-3 w-1/2 p-8 justify-items-center ";
     return (
       <>
         <div className={textJSXtext}>
           {!this.gameOver ? (
-            <Message onClick={undefined}>
+            <Message>
               {this.playerTurn == 0 ? "Player's Turn" : "Dealer's Turn"}
             </Message>
           ) : (
-            <Message onClick={undefined}>
+            <Message>
               <b>
                 Game Over! The Result is:&nbsp;
                 {this.roundWinner}
@@ -181,15 +154,21 @@ export default class BlackjackGame extends React.Component<
           )}
         </div>
         <div className="flex me-2 mb-2 pt-10 pb-10">
-          <div className="drop-shadow-xl drop-shadow-black border-4 border-yellow-500 rounded-3xl ml-3 mr-3 flex-wrap w-1/2 p-8 justify-items-center bg-[url(/assets/felt-blue.jpg)]">
+          <div
+            className={
+              playingAreaStyle + "flex-wrap bg-[url(/assets/felt-blue.jpg)]"
+            }>
             {player.render()}
           </div>
-          <div className="drop-shadow-xl drop-shadow-black border-4 border-yellow-500 rounded-3xl ml-3 mr-3 flex-wrap-reverse w-1/2 p-8 justify-items-center bg-[url(/assets/felt-red.jpg)]">
+          <div
+            className={
+              playingAreaStyle + "flex-wrap-reverse bg-[url(/assets/felt-red.jpg)]"
+            }>
             {dealer.render()}
           </div>
         </div>
         <div className={textJSXtext}>
-          <Message onClick={undefined}>
+          <Message>
             Player's Score: {player.hand.calculateValue()}
             &nbsp; Dealer's Score: {dealer.hand.calculateValue()}
           </Message>

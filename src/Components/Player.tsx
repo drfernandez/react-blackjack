@@ -23,14 +23,7 @@ export default class Player extends React.Component<PlayerProps, PlayerState> {
     this.hand.calculateValue();
   }
 
-  stand(): void {}
-
   render(): JSX.Element {
-    return (
-      <>
-        {/* <Hand ref={this.props.ref}/> */}
-        {this.hand.render()}
-      </>
-    );
+    return <>{this.hand.render()}</>;
   }
 }
