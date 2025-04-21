@@ -9,15 +9,8 @@ interface BlackjackGameProps {
   [key: string]: any;
 }
 
-interface BlackjackGameState {
-  deck: Deck;
-  player: Player;
-  dealer: Player;
-}
-
 export default class BlackjackGame extends React.Component<
-  BlackjackGameProps,
-  BlackjackGameState
+  BlackjackGameProps
 > {
   constructor(props: BlackjackGameProps) {
     super(props);

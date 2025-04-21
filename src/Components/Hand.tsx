@@ -6,13 +6,7 @@ interface HandProps {
   isDealer?: boolean;
 }
 
-interface HandState {
-  list: Card[];
-  value: number;
-  isDealer: boolean;
-}
-
-export default class Hand extends React.Component<HandProps, HandState> {
+export default class Hand extends React.Component<HandProps> {
   constructor(props: HandProps) {
     super(props);
     this.value = 0;

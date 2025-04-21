@@ -1,11 +1,5 @@
 import React, { JSX } from "react";
 
-/**
- * interface for storing Card props
- * @member face the value of the card ["2","3","4","5","6","7","8","9","10","J","Q","K","A"]
- * @member suit the suit of the card ["♠", "♣", "♥", "♦"]
- * @member children used in case this class prop provides children JSX
- */
 interface CardProps {
   face: string;
   suit: string;

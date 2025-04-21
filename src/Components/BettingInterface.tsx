@@ -7,14 +7,8 @@ interface BettingInterfaceProps {
   isBetting?: boolean;
 }
 
-interface BettingInterfaceState {
-  wallet: number;
-  betAmount: number;
-}
-
 export default class BettingInterface extends React.Component<
-  BettingInterfaceProps,
-  BettingInterfaceState
+  BettingInterfaceProps
 > {
   constructor(props: BettingInterfaceProps) {
     super(props);

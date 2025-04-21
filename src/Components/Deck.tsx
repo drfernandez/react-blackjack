@@ -22,11 +22,8 @@ export const faceSymbols: string[] = [
 interface DeckProps {
   visible?: boolean;
 }
-interface DeckState {
-  list: Card[];
-}
 
-export default class Deck extends React.Component<DeckProps, DeckState> {
+export default class Deck extends React.Component<DeckProps> {
   constructor(props: DeckProps) {
     super(props);
     (this.list = [] as Card[]), this.resetDeck();

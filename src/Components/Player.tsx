@@ -6,11 +6,8 @@ interface PlayerProps {
   hand: Hand;
 }
 
-interface PlayerState {
-  hand: Hand;
-}
 
-export default class Player extends React.Component<PlayerProps, PlayerState> {
+export default class Player extends React.Component<PlayerProps> {
   constructor(props: PlayerProps) {
     super(props);
     this.hand = props.hand;
